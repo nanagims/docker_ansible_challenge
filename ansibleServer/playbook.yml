@@ -1,0 +1,6 @@
+---
+- name: Deploy and configure Nginx
+  hosts: serveur_ssh
+  become: yes  # Utilise sudo pour les tâches nécessitant des privilèges administratifs
+  roles:
+    - nginx

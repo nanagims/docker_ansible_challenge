@@ -1,0 +1,23 @@
+services:
+  serveur_ssh:
+    build: ./sshConfig
+    container_name: serveur_ssh
+    hostname: serveur_ssh
+    ports:
+      - "2222:22"
+      - "80:80"
+    networks:
+      - tpnet
+
+  ansible_controller:
+    build: ./ansibleServer
+    container_name: ansible_controller
+    hostname: ansible_controller
+    depends_on:
+      - serveur_ssh
+    networks:
+      - tpnet
+
+networks:
+  tpnet:
+    driver: bridge
